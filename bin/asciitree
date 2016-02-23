@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var through = require('through2');
+var asciitree = require('my-ascii-tree');
+
+var argv = require('minimist')(process.argv);
+
+function fatal(message, code) {
+  console.error(message);
+  process.exit(code);
+}
+
+function log(message) {
+  console.log(message);
+  process.exit();
+}
+if (!argv.i) {
+  fatal("usage:\nasciitree -i input -o output\ninputfile's first line must be -start-, last line must be -end-");
+}
+
+var out = argv.o ? fs.createWriteStream(argv.o) : process.stdout;
+
+fs.createReadStream(argv.i)
+  .pipe(asciitree.stream.splitterStream())
+  .pipe(asciitree.stream.blockStream("-start-", "-end-"))
+  .pipe(asciitree.stream.treeStream())
+  .pipe(through.obj(function(line, enc, cb) {
+    cb(null, line.toBuffer());
+  }))
+  .pipe(out);

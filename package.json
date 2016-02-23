@@ -1,0 +1,30 @@
+{
+  "name": "ascii-tree-cli",
+  "version": "1.0.0",
+  "description": "a utility to convert indented line to ascii tree.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianglibo/ascii-tree-cli.git"
+  },
+  "keywords": [
+    "ascii-tree"
+  ],
+  "author": "jianglibo <jianglibo@gmail.com> (http://www.m3958.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jianglibo/ascii-tree-cli/issues"
+  },
+  "homepage": "https://github.com/jianglibo/ascii-tree-cli#readme",
+  "preferGlobal": true,
+  "bin": {
+    "asciitree": "./bin/asciitree"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "my-ascii-tree": "^1.0.14",
+    "through2": "^2.0.1"
+  }
+}
